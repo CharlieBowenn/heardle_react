@@ -1,7 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from './pages/Home';
 import Categories from "./pages/Categories";
-import GuitarLogo from './pics/GuitarLogo.png'
+import RapMode from "./pages/RapMode";
+import RockMode from "./pages/RockMode";
 import './AppStyle.css';
 
 function App() {
@@ -11,6 +12,8 @@ function App() {
         <Route index element={<Home />} />
         <Route path='/home' element={<Home />} />
         <Route path='/categories' element={<Categories />} />
+        <Route path='/game/rap' element={<RapMode />} />
+        <Route path='/game/rock' element={<RockMode />} />
       </Routes>
     </>
   )
