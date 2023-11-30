@@ -4,6 +4,7 @@ export default function Guess({number}) {
   return (
     <div>
         <label>Guess {number}:</label>
+        <label></label>
     </div>
   )
 }
