@@ -7,11 +7,12 @@ import axios from 'axios'
 
 export default function Categories() {
     const [chosenPlaylist, setChosenPlaylist] = useState({})
+    let available = {}
+
     const playlists = {
         'rap': 'UK RAP BANGERS',
         'rock': 'Rock Classics'
     }
-
     const getPlaylist = async (e) => {
         const {data} = await axios.get('https://api.spotify.com/v1/search', {
             headers: {
@@ -24,7 +25,6 @@ export default function Categories() {
         })
 
         let url = data.playlists.items[0].tracks['href']
-        let available = {}
         while(true) {
             const newData = await axios.get(url, {
                 headers: {
@@ -44,36 +44,18 @@ export default function Categories() {
                 break
             }
         }
-        setChosenPlaylist(available)
-        console.log('available')
-        console.log(available)
-        console.log('chosenPlaylist')
-        console.log(chosenPlaylist)
+        // setChosenPlaylist(available)
     }
-    //PROBLEM WITH ASYNC
-    //BELOW FUNCTION CALLS getPlaylist, BUT THEN CALLS NAVIGATE BEFORE getPlaylist HAS COMPLETED
-    //SO CHOSENPLAYLIST HASN'T BEEN SET, SO NOT TRANSFERRED TO NEXT SCREEN
+
     const navigate = useNavigate();
     function handleClick(page) {
-        getPlaylist(page)
-        console.log(chosenPlaylist)
-        navigate(`/game/${page}`, {state: {songs: chosenPlaylist}})
+        getPlaylist(page).then(() => navigate(`/game/${page}`, {state: {songs: available}}))
     }
 
     function handleHomeClick() {
         navigate('/home')
     }
 
-    const renderPlaylists = () => {
-        // return chosenPlaylist.map(playlist => (
-        //     <div key={playlist.id}>
-        //         {playlist.name}
-        //     </div>
-        // ))
-        return (
-            <div>{chosenPlaylist.name}</div>
-        )
-    }
 
   return (
     <div className='AppStyle'>
@@ -83,9 +65,7 @@ export default function Categories() {
                 <PicButton imgPath={RapImg} onClick={() => handleClick('rap')} caption='Rap' style='rap-text' />
                 <PicButton imgPath={RockImg} onClick={() => handleClick('rock')} caption='Rock' style='rock-text' />
             </div>
-            <button type='button' onClick={() => handleHomeClick()}>Return to home</button>
-            <div>Playlist name: {renderPlaylists()}</div>
-            
+            <button type='button' onClick={() => handleHomeClick()}>Return to home</button>            
         </header>
     </div>
   )
