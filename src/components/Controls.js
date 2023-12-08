@@ -8,25 +8,17 @@ export default function Controls({audioRef, progressBarRef, duration, setTimePro
         3: 5,
         4: 10,
         5: 20,
-        6: 30
+        6: 30,
+        7: 30
       }
     const [playing, setPlaying] = useState(false)
     const toggle = () => {
         setPlaying(!playing)
     }
-    // useEffect(() => {
-    //     if(playing) {
-    //         audioRef.current.play()
-    //     } else {
-    //         audioRef.current.pause()
-    //     }
-    // }, [playing, audioRef])
 
     const playAnimationRef = useRef();
     const repeat = useCallback(() => {
-        // console.log((progressBarRef.current.value / duration) * 100)
         const currentTime = audioRef.current.currentTime
-        console.log(currentTime)
         setTimeProgress(currentTime)
         progressBarRef.current.value = currentTime
         progressBarRef.current.style.setProperty(

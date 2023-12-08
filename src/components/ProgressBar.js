@@ -29,7 +29,7 @@ export default function ProgressBar({ progressBarRef, audioRef, timeProgress, du
                 defaultValue='0'
                 onChange={handleProgressChange}
             />
-            <span className="time">{formatTime(duration)}</span>
+            {/* <span className="time">{formatTime(duration)}</span> */}
         </div>
     )
 }

@@ -4,6 +4,7 @@ import Categories from "./pages/Categories";
 import RapMode from "./pages/RapMode";
 import RockMode from "./pages/RockMode";
 import './AppStyle.css';
+import ChosenMode from "./pages/ChosenMode";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path='/categories' element={<Categories />} />
         <Route path='/game/rap' element={<RapMode />} />
         <Route path='/game/rock' element={<RockMode />} />
+        <Route path='/game' element={<ChosenMode />} />
       </Routes>
     </>
   )

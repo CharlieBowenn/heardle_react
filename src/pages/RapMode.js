@@ -8,7 +8,7 @@ import ProgressBar from '../components/ProgressBar'
 
 export default function RapMode() {
   const {state} = useLocation();
-  const {songs} = state;
+  const {songs, tester} = state;
   const [chosenSongName, setChosenSongName] = useState('')
   const [round, setNextRound] = useState(1)
   

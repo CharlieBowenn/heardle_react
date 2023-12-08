@@ -10,8 +10,8 @@ export default function Categories() {
     let available = {}
 
     const playlists = {
-        'rap': 'UK RAP BANGERS',
-        'rock': 'Rock Classics'
+        'Rap': 'UK RAP BANGERS',
+        'Rock': 'Rock Classics'
     }
     const getPlaylist = async (e) => {
         const {data} = await axios.get('https://api.spotify.com/v1/search', {
@@ -49,7 +49,8 @@ export default function Categories() {
 
     const navigate = useNavigate();
     function handleClick(page) {
-        getPlaylist(page).then(() => navigate(`/game/${page}`, {state: {songs: available}}))
+        // getPlaylist(page).then(() => navigate(`/game/${page}`, {state: {songs: available, tester: 'heheh'}}))
+        getPlaylist(page).then(() => navigate(`/game`, {state: {songs: available, mode: page}}))
     }
 
     function handleHomeClick() {
@@ -62,8 +63,8 @@ export default function Categories() {
         <header className='App-header'>
             <p className='title-text'>Choose a Category</p>
             <div className='pic-button-container'>
-                <PicButton imgPath={RapImg} onClick={() => handleClick('rap')} caption='Rap' style='rap-text' />
-                <PicButton imgPath={RockImg} onClick={() => handleClick('rock')} caption='Rock' style='rock-text' />
+                <PicButton imgPath={RapImg} onClick={() => handleClick('Rap')} caption='Rap' style='rap-text' />
+                <PicButton imgPath={RockImg} onClick={() => handleClick('Rock')} caption='Rock' style='rock-text' />
             </div>
             <button type='button' onClick={() => handleHomeClick()}>Return to home</button>            
         </header>
