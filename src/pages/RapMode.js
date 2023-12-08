@@ -11,14 +11,6 @@ export default function RapMode() {
   const {songs} = state;
   const [chosenSongName, setChosenSongName] = useState('')
   const [round, setNextRound] = useState(1)
-  const roundTimings = {
-    1: 1,
-    2: 3,
-    3: 5,
-    4: 10,
-    5: 20,
-    6: 30
-  }
   
 
   useEffect(() => {
@@ -42,7 +34,7 @@ export default function RapMode() {
         <header className='App-header'>
             <p>Hi there</p>
             <GuessList className='Guess-box'/>
-            {chosenSongName && <AudioPlayer url={songs[chosenSongName]}/>}
+            {chosenSongName && <AudioPlayer url={songs[chosenSongName]} round={round}/>}
             <button onClick={() => nextRound()}>Next Round</button>
         </header>
     </div>

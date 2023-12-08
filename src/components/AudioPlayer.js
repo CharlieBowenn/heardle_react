@@ -3,7 +3,7 @@ import ProgressBar from './ProgressBar';
 import DisplayTrack from './DisplayTrack';
 import Controls from './Controls';
 
-export default function AudioPlayer({ url }) {
+export default function AudioPlayer({ url, round }) {
     // const [audio] = useState(new Audio(url));
     // const [playing, setPlaying] = useState(false);
     // const toggle = () => {
@@ -55,7 +55,7 @@ export default function AudioPlayer({ url }) {
                     {...{url, audioRef, setDuration, progressBarRef}}
                 />
                 <Controls
-                    {...{audioRef, progressBarRef, duration, setTimeProgress}}
+                    {...{audioRef, progressBarRef, duration, setTimeProgress, round}}
                 />
                 <ProgressBar
                     {...{progressBarRef, audioRef, timeProgress, duration}}
