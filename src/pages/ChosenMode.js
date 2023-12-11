@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import {useLocation, useNavigate} from 'react-router-dom'
 import GuessList from '../components/GuessList'
 import AudioPlayer from '../components/AudioPlayer'
+import TextField from '@mui/material/TextField';
+import Autocomplete from '@mui/material/Autocomplete'
 
 export default function ChosenMode() {
     const {state} = useLocation();
@@ -22,6 +24,19 @@ export default function ChosenMode() {
         }        
     }
     const navigate = useNavigate()
+
+    const filterOptions = (options, { inputValue }) => {
+        return inputValue ? options.filter(option => option.toLowerCase().includes(inputValue.toLowerCase())) : []
+        
+    }
+
+    const [inputValue, setInputValue] = useState('');
+
+    const handleInputChange = (event, newInputValue) => {
+        setInputValue(newInputValue);
+    };
+
+    
     
     return (
         <div className='AppStyle'>
@@ -30,7 +45,19 @@ export default function ChosenMode() {
                 ? <div>
                     <p>{mode} Mode - Round {round>6 ? 6 : round}</p>
                     <GuessList className='Guess-box'/>
+                    
                     {chosenSongName && <AudioPlayer url={songs[chosenSongName]} round={round}/>}
+                    <Autocomplete
+                        options={Object.keys(songs)}
+                        isOptionEqualToValue={(option, value) => option === value}
+                        getOptionLabel={(option) => option}
+                        filterOptions={filterOptions}
+                        inputValue={inputValue}
+                        onInputChange={handleInputChange}
+                        renderInput={(params) => (
+                            <TextField {...params} label="Guess a song" />
+                        )}
+                    />
                     {round<7 
                         ? <button onClick={() => setNextRound((round) => round+1)}>{round<6 ? 'Next Round' : 'Give Up'}</button> 
                         : <button onClick={() => newGame()}>Play Again</button>
