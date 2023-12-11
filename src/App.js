@@ -1,26 +1,22 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from './pages/Home';
 import Categories from "./pages/Categories";
-import RapMode from "./pages/RapMode";
-import RockMode from "./pages/RockMode";
 import './AppStyle.css';
 import ChosenMode from "./pages/ChosenMode";
 
-function App() {
+export default function App() {
   return (
     <>
       <Routes>
         <Route index element={<Home />} />
         <Route path='/home' element={<Home />} />
         <Route path='/categories' element={<Categories />} />
-        <Route path='/game/rap' element={<RapMode />} />
-        <Route path='/game/rock' element={<RockMode />} />
         <Route path='/game' element={<ChosenMode />} />
       </Routes>
     </>
   )
 }
-export default App;
+// export default App;
 // function App() {
 //   return (
 //     <div className="AppStyle">

@@ -14,6 +14,7 @@ export default function Categories() {
         'Rock': 'Rock Classics'
     }
     const getPlaylist = async (e) => {
+        //Get list of all playlists that appear on initial search
         const {data} = await axios.get('https://api.spotify.com/v1/search', {
             headers: {
                 Authorization: `Bearer ${window.localStorage.getItem('token')}`
@@ -24,6 +25,7 @@ export default function Categories() {
             }
         })
 
+        //Choose specific playlist out of list of all playlists
         let url = data.playlists.items[0].tracks['href']
         while(true) {
             const newData = await axios.get(url, {
@@ -34,8 +36,9 @@ export default function Categories() {
 
             for(var x=0; x<newData.data.items.length; x++) {
                 const song = newData.data.items[x].track
+                // console.log(`${song.name} - ${song.artists[0].name}`)
                 if(song.preview_url) {
-                    available[song.name] = song.preview_url
+                    available[`${song.name} - ${song.artists[0].name}`] = song.preview_url
                 }
             }
 
