@@ -16,6 +16,12 @@ export default function Controls({audioRef, progressBarRef, duration, setTimePro
         setPlaying(!playing)
     }
 
+    useEffect(() => {
+        if(round===7 && !playing) {
+            setPlaying(true)
+        }
+    }, [round])
+
     const playAnimationRef = useRef();
     const repeat = useCallback(() => {
         const currentTime = audioRef.current.currentTime

@@ -72,6 +72,12 @@ export default function ChosenMode() {
         
     }, [round]);
 
+    useEffect(() => {
+        if(gameOver){
+            setNextRound(7)
+        }
+    }, [gameOver])
+
     
 
     
@@ -91,7 +97,6 @@ export default function ChosenMode() {
                         isOptionEqualToValue={(option, value) => option === value}
                         getOptionLabel={(option) => option}
                         filterOptions={filterOptions}
-                        // inputValue={inputValue}
                         value={inputValue}
                         onInputChange={handleInputChange}
                         renderInput={(params) => (
