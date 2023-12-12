@@ -1,10 +1,9 @@
 import React from 'react'
 
-export default function Guess({number}) {
+export default function Guess({number, guess=''}) {
   return (
     <div>
-        <label>Guess {number}:</label>
-        <label></label>
+        <label>Guess {number}: {guess}</label>
     </div>
   )
 }
