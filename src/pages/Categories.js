@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import PicButton from '../components/PicButton'
 import RapImg from '../pics/Rap.png'
 import RockImg from '../pics/Rock.png'
+import EightiesImg from '../pics/Eighties.jpg'
 import axios from 'axios'
 
 export default function Categories() {
@@ -11,7 +12,8 @@ export default function Categories() {
 
     const playlists = {
         'Rap': 'UK RAP BANGERS',
-        'Rock': 'Rock Classics'
+        'Rock': 'Rock Classics',
+        '80s': '80s Hits'
     }
     const getPlaylist = async (e) => {
         //Get list of all playlists that appear on initial search
@@ -68,6 +70,7 @@ export default function Categories() {
             <div className='pic-button-container'>
                 <PicButton imgPath={RapImg} onClick={() => handleClick('Rap')} caption='Rap' style='rap-text' />
                 <PicButton imgPath={RockImg} onClick={() => handleClick('Rock')} caption='Rock' style='rock-text' />
+                <PicButton imgPath={EightiesImg} onClick={() => handleClick('80s')} caption='80s' style='rock-text' />
             </div>
             <button type='button' onClick={() => handleHomeClick()}>Return to home</button>            
         </header>

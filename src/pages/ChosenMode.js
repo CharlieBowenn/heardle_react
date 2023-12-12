@@ -63,9 +63,7 @@ export default function ChosenMode() {
     }
 
     useEffect(() => {
-        // console.log('Round has changed')
         setInputValue('');
-        // console.log('Round has changed, just run setInputValue')
         if(round>6) {
             setGameOver(true)
         }
@@ -105,8 +103,8 @@ export default function ChosenMode() {
                     />
                     {!gameOver 
                         ? <div>
+                            <button onClick={() => handleGuess()} disabled={inputValue=='' ? true : false}>Guess</button>
                             <button onClick={() => updateRound()}>{round<6 ? 'Next Round' : 'Give Up'}</button>
-                            <button onClick={() => handleGuess()}>Guess</button>
                           </div>
                         : <button onClick={() => newGame()}>Play Again</button>
                     }
